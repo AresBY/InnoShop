@@ -1,0 +1,75 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+
+# Rider IDE
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# ASP.NET Core publish output
+publish/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+
+# EF Core Migrations
+**/Migrations/
+
+# Docker
+docker-compose.override.yml
+
+# User secrets
+secrets.json
+*.usersecrets
+
+# Logs
+*.log
+logs/
+
+# Database files
+*.mdf
+*.ldf
+*.sqlite
+
+# JetBrains Rider settings
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Coverage results
+coverage/
+*.coverage
+*.coveragexml
+
+# Test results
+TestResults/
+*.trx
+
+# Resharper
+_ReSharper*/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Generated files by dotnet
+*.dotnet-tools.json
+
+# EF Core design files
+*.efcore
+
+# Ignore dotnet tool manifest files if you don’t want them tracked
+.dotnet-tools.json
