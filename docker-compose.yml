@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "Str0ng!Passw0rd21"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - mssqldata:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -U sa -P Str0ng!Passw0rd21 -Q 'SELECT 1'"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  users.api:
+    image: innoshop.users
+    build:
+      context: .
+      dockerfile: Users/InnoShop.Users.Api/Dockerfile
+    ports:
+      - "5260:8080"
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ConnectionStrings__DefaultConnection=Server=db;Database=InnoShopUsersDb;User Id=sa;Password=Str0ng!Passw0rd21;TrustServerCertificate=True;
+    restart: always
+
+  products.api:
+    image: innoshop.products
+    build:
+      context: .
+      dockerfile: Products/InnoShop.Products.Api/Dockerfile
+    ports:
+      - "5179:8080"
+    depends_on:
+      - db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ConnectionStrings__DefaultConnection=Server=db;Database=InnoShopProductsDb;User Id=sa;Password=Str0ng!Passw0rd21;TrustServerCertificate=True;
+    restart: always
+
+  api.gateway:
+    image: innoshop.gateway
+    build:
+      context: .
+      dockerfile: InnoShop.ApiGateway/Dockerfile
+    ports:
+      - "5056:80"
+    depends_on:
+      - users.api
+      - products.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+
+volumes:
+  mssqldata:

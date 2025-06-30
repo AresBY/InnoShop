@@ -1,0 +1,106 @@
+﻿{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/User/{everything}",
+      "DownstreamPathTemplate": "/api/User/{everything}",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5260
+        }
+      ],
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/Auth/{everything}",
+      "DownstreamPathTemplate": "/api/Auth/{everything}",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5260
+        }
+      ],
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/Product/{everything}",
+      "DownstreamPathTemplate": "/api/Product/{everything}",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5179
+        }
+      ],
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
+    },
+
+
+    {
+      "DownstreamPathTemplate": "/swagger/v1/swagger.json",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5260
+        }
+      ],
+      "UpstreamPathTemplate": "/swagger/docs/users/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/swagger/v1/swagger.json",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5179
+        }
+      ],
+      "UpstreamPathTemplate": "/swagger/docs/products/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/swagger/v1/swagger.json",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5260
+        }
+      ],
+      "UpstreamPathTemplate": "/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "products",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "Products API",
+          "Version": "v1",
+          "Url": "http://localhost:5179/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "users",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "Users API",
+          "Version": "v1",
+          "Url": "http://localhost:5260/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5056"
+  }
+}

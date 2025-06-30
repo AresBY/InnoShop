@@ -1,0 +1,52 @@
+@InnoShop.Products.API_HostAddress = http://localhost:5179
+
+### Получить все продукты
+GET {{InnoShop.Products.API_HostAddress}}/api/products
+Accept: application/json
+
+###
+
+### Получить продукт по ID
+GET {{InnoShop.Products.API_HostAddress}}/api/products/00000000-0000-0000-0000-000000000000
+Accept: application/json
+
+###
+
+### Поиск продуктов
+GET {{InnoShop.Products.API_HostAddress}}/api/products/search?name=phone&minPrice=100&maxPrice=500&isAvailable=true
+Accept: application/json
+
+###
+
+### Создать новый продукт
+POST {{InnoShop.Products.API_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Test Product",
+  "description": "Описание тестового продукта",
+  "price": 199.99,
+  "isAvailable": true,
+  "createdByUserId": "00000000-0000-0000-0000-000000000000"
+}
+
+###
+
+### Обновить продукт
+PUT {{InnoShop.Products.API_HostAddress}}/api/products/00000000-0000-0000-0000-000000000000
+Content-Type: application/json
+
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "name": "Обновлённый продукт",
+  "description": "Новое описание",
+  "price": 249.99,
+  "isAvailable": false,
+  "createdByUserId": "00000000-0000-0000-0000-000000000000"
+}
+
+###
+
+### Удалить продукт
+DELETE {{InnoShop.Products.API_HostAddress}}/api/products/00000000-0000-0000-0000-000000000000
+Accept: application/json

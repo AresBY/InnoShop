@@ -1,0 +1,100 @@
+### Register user
+POST http://localhost:5260/api/Auth/Register
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "4",
+  "password": "238!"
+}
+
+###
+
+### Login
+POST http://localhost:5260/api/Auth/Login
+Content-Type: application/json
+
+{
+  "email": "free2107@mail.ru",
+  "password": "NewPassword!"
+}
+
+###
+
+### Refresh token
+POST http://localhost:5260/api/Auth/Refresh
+Content-Type: application/json
+
+{
+  "refreshToken": "PASTE_REFRESH_TOKEN_HERE"
+}
+
+###
+
+### Forgot password (request reset token)
+POST http://localhost:5260/api/Auth/ForgotPassword
+Content-Type: application/json
+
+{
+  "email": "free2107@mail.ru"
+}
+
+###
+
+### Reset password (using token from email)
+POST http://localhost:5260/api/Auth/ResetPassword
+Content-Type: application/json
+
+{
+  "email": "free2107@mail.ru",
+  "token": "bfe98148-39ad-402a-9703-76a127202b7f",
+  "newPassword": "NewPassword2!"
+}
+
+###
+
+### Get all users
+GET http://localhost:5260/api/User/GetAll
+Accept: application/json
+
+###
+
+### Get user by id
+GET http://localhost:5260/api/User/PASTE_USER_ID_HERE
+Accept: application/json
+
+###
+
+### Create user (requires Admin role, don't forget to add Authorization header with Bearer token)
+POST http://localhost:5260/api/User/Create
+Content-Type: application/json
+Authorization: Bearer PASTE_YOUR_ACCESS_TOKEN_HERE
+
+{
+  "name": "New User",
+  "email": "new.user@example.com",
+  "role": "User",
+  "passwordHash": "Password123!"
+}
+
+###
+
+### Update user (requires Admin role, add Authorization header)
+PUT http://localhost:5260/api/User/8ed119b5-8a62-43f4-8675-09cec6f43fcf
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ZWQxMTliNS04YTYyLTQzZjQtODY3NS0wOWNlYzZmNDNmY2YiLCJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVXNlciIsImV4cCI6MTc1MDUzMzE3OCwiaXNzIjoiSW5ub1Nob3BBdXRoU2VydmVyIiwiYXVkIjoiSW5ub1Nob3BDbGllbnRzIn0.xyrCPlmsxEasyWC9ED7i02XZIQgT38RdyDlCF6NNqyQ
+
+{
+  "id": "8ed119b5-8a62-43f4-8675-09cec6f43fcf",
+  "name": "Ares Up",
+  "email": "free2107@mail.ru",
+  "role": "Admin",
+  "isActive": true
+}
+
+###
+
+### Delete user (requires Admin role, add Authorization header)
+DELETE http://localhost:5260/api/User/69d9654d-af41-4aef-8d6d-5bf296632e7e
+Authorization: Bearer PASTE_YOUR_ACCESS_TOKEN_HERE
+

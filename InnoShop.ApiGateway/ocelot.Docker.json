@@ -1,0 +1,96 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/User/{everything}",
+      "DownstreamPathTemplate": "/api/User/{everything}",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "users.api",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/Auth/{everything}",
+      "DownstreamPathTemplate": "/api/Auth/{everything}",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "users.api",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/Product/{everything}",
+      "DownstreamPathTemplate": "/api/Product/{everything}",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "products.api",
+          "Port": 8080
+        }
+      ],
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ]
+    },
+    {
+      "DownstreamPathTemplate": "/swagger/v1/swagger.json",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "users.api",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/swagger/docs/users/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ],
+      "RetryPolicy": {
+        "RetryCount": 5,
+        "RetryBackOff": 3000
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/swagger/v1/swagger.json",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "products.api",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/swagger/docs/products/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ],
+      "RetryPolicy": {
+        "RetryCount": 5,
+        "RetryBackOff": 3000
+      }
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "users",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "Users API",
+          "Version": "v1",
+          "Url": "http://users.api:8080/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "products",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "Products API",
+          "Version": "v1",
+          "Url": "http://products.api:8080/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5056"
+  }
+}

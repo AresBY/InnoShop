@@ -1,0 +1,7 @@
+﻿{
+  "Routes": [],
+  "SwaggerEndPoints": [],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5056"
+  }
+}
